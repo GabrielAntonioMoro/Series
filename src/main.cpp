@@ -58,10 +58,21 @@ void UIGetEnterParaContinuar();
 // Faz a leitura somente de digitos da entrada do usuário
 int UIEntrada(int *v);
 
+// Função de entrada do programa.
 int main(int argc, char *argv[])
 {
-    // TODO: Carregar arquivo.
-    series = new Series("/home/gabriel/INMET.CSV");
+    // 1- O nosso programa.
+    // 2- O arquivo que queremos carregar.
+    if(argc < 2 || argc > 2) {
+        printf("\nInforme corretamente a entrada para o programa.\n");
+        printf("Exemplo de entrada: \n");
+        printf("\t$ ./programa \"diretorio/do/arquivo/INMET.CSV\"\n");
+        printf("Saindo do programa.\n\n");
+
+        return -1;
+    } 
+
+    series = new Series(argv[1]);
 
     while (exit_program == false)
     {
@@ -105,8 +116,8 @@ bool UIShowConsulta()
     int escolha = 0;
 
     printf("Que tipo de consulta você deseja fazer?\n");
-    printf(" [1] Exibir valores dado *um* momento específico.\n");
-    printf(" [2] Mostre o resumo (média, máximo e mínimo) durante *dois* momentos específicados.\n");
+    printf(" [1] Mostrar resumo dado *um* momento específico.\n");
+    printf(" [2] Mostre o resumo durante *dois* momentos específicados.\n");
     printf(" [0] Sair do programa.\n");
 
     printf(" $ Informe sua escolha: ");
@@ -217,7 +228,6 @@ void UIShowResultado()
     }
 
     UIShowTabelaFooter(linhas.GetTamanho(), soma, maior, menor);
-
     UIGetEnterParaContinuar();
 }
 

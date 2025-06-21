@@ -11,8 +11,6 @@
 #define STATUS_OK 0
 #define STATUS_CANCELADO 1
 
-char *arquivo;
-
 /*
  * [0] = Indefinido
  * [1] = Específico
